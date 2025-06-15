@@ -1,23 +1,26 @@
-
 import { useState, useEffect, useRef, useCallback } from 'react';
 import { WebSocketMessage } from '../types/menu';
+import { getWebSocketUrl, WEBSOCKET_CONFIG } from '../config/websocket';
 
 export const useWebSocket = (url: string, onMessage: (message: WebSocketMessage) => void) => {
   const [isConnected, setIsConnected] = useState(false);
   const [connectionStatus, setConnectionStatus] = useState<'connected' | 'disconnected' | 'connecting'>('disconnected');
   const ws = useRef<WebSocket | null>(null);
   const reconnectTimeoutRef = useRef<NodeJS.Timeout>();
+  const reconnectAttempts = useRef(0);
 
   const connect = useCallback(() => {
     try {
       setConnectionStatus('connecting');
-      ws.current = new WebSocket(url);
+      const wsUrl = getWebSocketUrl();
+      ws.current = new WebSocket(wsUrl);
 
       ws.current.onopen = () => {
-        console.log('WebSocket connected');
+        console.log('WebSocket connected to:', wsUrl);
         setIsConnected(true);
         setConnectionStatus('connected');
-        // Clear any existing reconnect timeout
+        reconnectAttempts.current = 0;
+        
         if (reconnectTimeoutRef.current) {
           clearTimeout(reconnectTimeoutRef.current);
         }
@@ -37,11 +40,15 @@ export const useWebSocket = (url: string, onMessage: (message: WebSocketMessage)
         setIsConnected(false);
         setConnectionStatus('disconnected');
         
-        // Auto-reconnect after 3 seconds
-        reconnectTimeoutRef.current = setTimeout(() => {
-          console.log('Attempting to reconnect...');
-          connect();
-        }, 3000);
+        // Auto-reconnect with exponential backoff
+        if (reconnectAttempts.current < WEBSOCKET_CONFIG.maxReconnectAttempts) {
+          const delay = Math.min(WEBSOCKET_CONFIG.reconnectInterval * Math.pow(2, reconnectAttempts.current), 30000);
+          reconnectTimeoutRef.current = setTimeout(() => {
+            console.log(`Attempting to reconnect... (attempt ${reconnectAttempts.current + 1})`);
+            reconnectAttempts.current++;
+            connect();
+          }, delay);
+        }
       };
 
       ws.current.onerror = (error) => {
