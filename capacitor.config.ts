@@ -1,15 +1,12 @@
 
 import { CapacitorConfig } from '@capacitor/cli';
 
+// This config is only needed if you also deploy as a native app (not needed for website hosting)
 const config: CapacitorConfig = {
   appId: 'com.biryani.menusync',
   appName: 'MenuSync Control',
   webDir: 'dist',
   bundledWebRuntime: false,
-  server: {
-    url: 'https://07be41e2-ca0f-4903-b176-b0134ec8dcf1.lovableproject.com?forceHideBadge=true',
-    cleartext: true
-  },
   plugins: {
     CapacitorHttp: {
       enabled: true
