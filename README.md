@@ -1,73 +1,142 @@
-# Welcome to your Lovable project
 
-## Project info
+# Restaurant Menu Management System
 
-**URL**: https://lovable.dev/projects/07be41e2-ca0f-4903-b176-b0134ec8dcf1
+A cross-platform client-server application for managing restaurant menu availability in real-time between Android TV displays and mobile controller devices.
 
-## How can I edit this code?
+## 🚀 Features
 
-There are several ways of editing your application.
+### 📺 TV Interface (Client)
+- **Large Screen Display**: Optimized for restaurant displays and Android TV
+- **Real-time Updates**: Instant synchronization with mobile controllers
+- **Visual Status Indicators**: Blinking buttons for active availability states
+- **Auto-reconnect**: Automatically reconnects to mobile controllers
+- **Clean Design**: Card-based layout with high visibility for kitchen staff
 
-**Use Lovable**
+### 📱 Mobile Interface (Controller)
+- **Material Design**: Intuitive mobile interface for restaurant staff
+- **Menu Management**: Add, delete, and rename menu items
+- **Availability Toggle**: Real-time status control with instant TV updates
+- **Network Status**: Visual connection indicators
+- **Offline Storage**: Local storage for menu persistence
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/07be41e2-ca0f-4903-b176-b0134ec8dcf1) and start prompting.
+### 🔄 Real-time Synchronization
+- **WebSocket Communication**: Instant updates between devices
+- **Local Network**: No internet dependency - works on local WiFi
+- **Graceful Reconnection**: Handles network interruptions seamlessly
+- **Data Persistence**: Menu items saved locally on both devices
 
-Changes made via Lovable will be committed automatically to this repo.
+## 🛠️ Tech Stack
 
-**Use your preferred IDE**
+- **Frontend**: React + TypeScript
+- **Styling**: Tailwind CSS with custom animations
+- **Communication**: WebSocket for real-time updates
+- **Storage**: LocalStorage for menu persistence
+- **Icons**: Lucide React
+- **State Management**: Custom React hooks
 
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
+## 🏗️ Architecture
 
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
+The application follows a **client-server architecture** with:
+- **TV Interface**: Display client optimized for large screens
+- **Mobile Interface**: Controller client for menu management
+- **WebSocket Server**: Real-time communication hub (mock implementation included)
+- **Local Storage**: Offline-first data persistence
 
-Follow these steps:
+## 📋 Usage Instructions
 
-```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
+### Getting Started
+1. **Choose Device Type**: Select TV or Mobile interface on launch
+2. **TV Setup**: Use TV interface for kitchen/display area
+3. **Mobile Setup**: Use mobile interface for staff control
+4. **Connect**: Both devices automatically connect via WebSocket
 
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
+### TV Interface
+- View all menu items in large, readable cards
+- See real-time availability status with blinking indicators
+- Monitor connection status in the header
+- Automatic synchronization with mobile updates
 
-# Step 3: Install the necessary dependencies.
-npm i
+### Mobile Interface
+- **Add Items**: Tap "Add New Menu Item" to create entries
+- **Toggle Status**: Tap Available/Not Available buttons
+- **Delete Items**: Use delete button to remove items
+- **Monitor Stats**: View total, available, and unavailable counts
 
-# Step 4: Start the development server with auto-reloading and an instant preview.
+## 🔧 Development Setup
+
+```bash
+# Install dependencies
+npm install
+
+# Start development server
 npm run dev
+
+# Build for production
+npm run build
 ```
 
-**Edit a file directly in GitHub**
+## 🌐 Network Configuration
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+For production deployment:
 
-**Use GitHub Codespaces**
+1. **WebSocket Server**: Implement a real WebSocket server (mock included)
+2. **Local Discovery**: Use mDNS/Bonjour for device discovery
+3. **QR Pairing**: Implement QR code pairing for easy setup
+4. **Network Resilience**: Handle WiFi changes and reconnections
 
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
+## 📱 Android Deployment
 
-## What technologies are used for this project?
+### For Android TV:
+1. Build APK with Android TV launcher intent
+2. Optimize for D-pad navigation
+3. Configure for kiosk mode if needed
 
-This project is built with:
+### For Mobile:
+1. Standard Android APK build
+2. Request network permissions
+3. Implement background service for persistent connection
 
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
+## 🔒 Security Features
 
-## How can I deploy this project?
+- **Local Network Only**: No external server dependencies
+- **Device Authentication**: Can be extended with pairing codes
+- **Message Validation**: All WebSocket messages are validated
+- **Graceful Degradation**: Works offline with local storage
 
-Simply open [Lovable](https://lovable.dev/projects/07be41e2-ca0f-4903-b176-b0134ec8dcf1) and click on Share -> Publish.
+## 🎨 UI/UX Features
 
-## Can I connect a custom domain to my Lovable project?
+- **Responsive Design**: Optimized for both TV and mobile screens
+- **Smooth Animations**: Blinking effects and transitions
+- **Visual Feedback**: Connection status and loading states
+- **Accessibility**: High contrast colors and large touch targets
 
-Yes, you can!
+## 📊 Menu Statistics
 
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
+The system tracks:
+- Total menu items
+- Available items count
+- Unavailable items count
+- Real-time status updates
+- Connection health monitoring
 
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/tips-tricks/custom-domain#step-by-step-guide)
+## 🚀 Future Enhancements
+
+- **Multi-device Support**: Multiple mobile controllers
+- **Menu Categories**: Group items by course type
+- **Image Support**: Add photos to menu items
+- **Analytics**: Track availability patterns
+- **Voice Control**: Add voice commands for hands-free operation
+
+## 🤝 Contributing
+
+This is a demonstration project showing cross-platform restaurant management system architecture. To extend for production:
+
+1. Implement real WebSocket server
+2. Add Android TV and mobile native builds
+3. Integrate with restaurant POS systems
+4. Add user authentication and roles
+5. Implement advanced networking features
+
+---
+
+Built with ❤️ for restaurant efficiency and staff productivity.
