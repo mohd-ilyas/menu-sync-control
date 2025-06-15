@@ -2,7 +2,7 @@
 import { CapacitorConfig } from '@capacitor/cli';
 
 const config: CapacitorConfig = {
-  appId: 'app.lovable.07be41e2ca0f4903b176b0134ec8dcf1',
+  appId: 'com.biryani.menusync',
   appName: 'menu-sync-control',
   webDir: 'dist',
   bundledWebRuntime: false,
