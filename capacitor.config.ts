@@ -3,7 +3,7 @@ import { CapacitorConfig } from '@capacitor/cli';
 
 const config: CapacitorConfig = {
   appId: 'com.biryani.menusync',
-  appName: 'menu-sync-control',
+  appName: 'MenuSync Control',
   webDir: 'dist',
   bundledWebRuntime: false,
   server: {
@@ -14,6 +14,10 @@ const config: CapacitorConfig = {
     CapacitorHttp: {
       enabled: true
     }
+  },
+  android: {
+    allowMixedContent: true,
+    captureInput: true
   }
 };
 

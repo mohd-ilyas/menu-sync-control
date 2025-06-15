@@ -1,14 +1,14 @@
 
 {
-  "name": "Menu Sync Control",
+  "name": "MenuSync Control",
   "short_name": "MenuSync",
-  "description": "Restaurant menu synchronization system for TV and mobile",
+  "description": "Restaurant menu synchronization system for Android TV and mobile devices",
   "start_url": "/",
   "display": "standalone",
   "theme_color": "#3b82f6",
-  "background_color": "#f8fafc",
+  "background_color": "#ffffff",
   "orientation": "any",
-  "categories": ["productivity", "business"],
+  "categories": ["productivity", "business", "food"],
   "icons": [
     {
       "src": "/placeholder.svg",
@@ -22,5 +22,9 @@
       "type": "image/svg+xml",
       "purpose": "any maskable"
     }
+  ],
+  "permissions": [
+    "android.permission.INTERNET",
+    "android.permission.ACCESS_NETWORK_STATE"
   ]
 }
